@@ -99,6 +99,13 @@ For Node.js projects:
 npm install
 ```
 
+The app targets Python 3.12 (`.python-version`). `failproofai-sdk` is currently
+published as a pre-release, so `requirements.txt` pins its exact version.
+Failproof tracing is off by default. Enable `REPORESCUE_ENABLE_FAILPROOF=true`
+only on a host where a Failproof daemon is configured; the app does not require
+Failproof credentials or a daemon to run, and does not claim cloud delivery or
+policy enforcement.
+
 ### Run the Project
 
 Use the actual entry-point command provided by the repository. For example:
@@ -112,6 +119,14 @@ or
 ```bash
 npm start
 ```
+
+### Deploy on Streamlit Community Cloud
+
+This repository's Streamlit entry point is `app.py` at the repository root.
+Connect the GitHub repository to Streamlit Community Cloud, choose `main` and
+`app.py`, and select Python 3.12 in Advanced settings. No secrets are required
+for the sample repair workflow. Leave `REPORESCUE_ENABLE_FAILPROOF` unset unless
+you have configured the Failproof daemon on the app host.
 
 These are examples; use only the command applicable to your project.
 

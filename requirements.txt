@@ -1,3 +1,5 @@
 streamlit
 pytest
-failproofai-sdk
+# This SDK is currently published only as a pre-release. Pin it explicitly so
+# pip does not silently skip it when resolving ordinary stable releases.
+failproofai-sdk==0.0.1b6

@@ -182,10 +182,10 @@ with st.sidebar:
 
     st.subheader("🔌 Integrations")
     if FAILPROOF_SDK_AVAILABLE:
-        st.success("Failproof AI: SDK tracing enabled")
-        st.caption("Cloud delivery depends on the local Failproof daemon configuration.")
+        st.success("Failproof AI: optional SDK instrumentation enabled")
+        st.caption("The SDK queues events locally. Cloud delivery requires a configured, running Failproof daemon and has not been verified here.")
     else:
-        st.warning("Failproof AI: SDK not installed")
+        st.info("Failproof AI: tracing is off; repairs run without the optional integration.")
     st.success("Repair backend: Connected to the bundled sample project")
 
     st.divider()
@@ -469,12 +469,11 @@ else:
         if fp.get("sdk_available"):
             st.write("**Failproof session / trace ID**")
             st.code(fp.get("session_id") or "Unavailable", language="text")
-            st.success("The official Failproof Python SDK recorded this repair session and its workflow events.")
-            st.caption("This confirms SDK instrumentation. Cloud delivery still requires the Failproof daemon to be configured and healthy.")
+            st.info("The Failproof SDK instrumentation ran for this session. The SDK queues events on the app host; cloud delivery was not verified and requires a configured, running Failproof daemon.")
         else:
             st.write("**Failproof session / trace ID**")
             st.code("Unavailable", language="text")
-            st.warning("No Failproof trace was emitted because the official Python SDK is not installed.")
+            st.info("No Failproof trace was emitted. The repair workflow continues without the optional integration.")
         st.write("**Failproof policy outcome**")
         st.warning("NOT EVALUATED — Failproof documents tracing for custom agents, but policy enforcement requires a custom runtime hook validated with Failproof AI.")
         st.write("**Local safeguards**")
